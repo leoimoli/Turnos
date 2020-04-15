@@ -106,10 +106,36 @@ namespace Turnos
                 int FraccionDeMinutos = Convert.ToInt32(txtFraccionTurno.Text);
                 int TotalDeTurnos = CalcularTotalDeTurnos(TotalHorasTrabajadas, FraccionDeMinutos);
                 Exito = TurnosNeg.GenerarTurnos(HoraDesde, HoraHasta, TotalDeTurnos, idCentro, Fecha, FraccionDeMinutos);
-
+                if(Exito == true)
+                {
+                    ProgressBar();
+                    const string message2 = "Se registraron los turnos exitosamente.";
+                    const string caption2 = "Éxito";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Asterisk);
+                   
+                }
             }
             catch (Exception ex)
             { }
+        }
+
+        private void ProgressBar()
+        {
+            progressBar1.Visible = true;
+            progressBar1.Maximum = 100000;
+            progressBar1.Step = 1;
+
+            for (int j = 0; j < 100000; j++)
+            {
+                Caluculate(j);
+                progressBar1.PerformStep();
+            }
+        }
+        private void Caluculate(int i)
+        {
+            double pow = Math.Pow(i, i);
         }
 
         private int CalcularTotalDeTurnos(int totalHorasTrabajadas, int fraccionDeMinutos)

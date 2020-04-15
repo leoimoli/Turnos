@@ -20,6 +20,8 @@ namespace Turnos.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
+            string Fec = fecha.ToShortDateString();
+            fecha = Convert.ToDateTime(Fec);
             MySqlParameter[] oParam = {
                                       new MySqlParameter("Fecha_in", fecha),
              new MySqlParameter("idCentro_in", idCentro),};
@@ -43,14 +45,24 @@ namespace Turnos.Dao
             int idPersona = Convert.ToInt32(null);
             int Hora = 0;
             int Minutos = 0;
+            string HoraTurno = "";
+            string MinutosDeHora = "";
+
+            string Fec = fecha.ToShortDateString();
+            fecha = Convert.ToDateTime(Fec);
             for (int i = 0; i < totalDeTurnos; i++)
             {
                 if (ContarInsert == 0)
                 {
                     Hora = horaDesde;
-                    string HoraTurno = Convert.ToString(Hora);
+                    HoraTurno = Convert.ToString(Hora);
                     connection.Close();
                     connection.Open();
+                    if (Minutos == 0)
+                    {
+                        HoraTurno = HoraTurno + ":" + "00";
+                    }
+
                     string proceso = "AltaTurno";
                     MySqlCommand cmd = new MySqlCommand(proceso, connection);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -66,9 +78,25 @@ namespace Turnos.Dao
                 else
                 {
                     Minutos = Minutos + FraccionDeMinutos;
-                    string HoraTurno = Convert.ToString(horaDesde);
-                    string MinutosDeHora = Convert.ToString(Minutos);
-                    HoraTurno = HoraTurno + ":" + Minutos;
+                    HoraTurno = Convert.ToString(Hora);
+                    MinutosDeHora = Convert.ToString(Minutos);
+                    if (Minutos > 60)
+                    {
+                        Hora = Hora + 1;
+                        HoraTurno = Convert.ToString(Hora);
+                        Minutos = Minutos - 60;
+                    }
+                    if (Minutos == 60)
+                    {
+                        Hora = Hora + 1;
+                        HoraTurno = Convert.ToString(Hora);
+                        Minutos = 0;
+                    }
+                    if (Minutos == 0)
+                    {
+                        MinutosDeHora = "00";
+                    }
+                    HoraTurno = HoraTurno + ":" + MinutosDeHora;
                     connection.Close();
                     connection.Open();
                     string proceso = "AltaTurno";
@@ -83,6 +111,7 @@ namespace Turnos.Dao
                     connection.Close();
                     ContarInsert = ContarInsert + 1;
                 }
+                Exito = true;
             }
             return Exito;
         }

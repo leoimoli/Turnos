@@ -46,6 +46,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,7 +195,7 @@
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGenerar.Location = new System.Drawing.Point(213, 303);
+            this.btnGenerar.Location = new System.Drawing.Point(213, 334);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(80, 51);
             this.btnGenerar.TabIndex = 11;
@@ -208,7 +209,7 @@
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(115, 303);
+            this.btnCancelar.Location = new System.Drawing.Point(115, 334);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(80, 51);
             this.btnCancelar.TabIndex = 10;
@@ -245,11 +246,21 @@
             this.label3.TabIndex = 57;
             this.label3.Text = "Horario de Atención";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(49, 301);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(330, 23);
+            this.progressBar1.TabIndex = 20;
+            this.progressBar1.Value = 50;
+            this.progressBar1.Visible = false;
+            // 
             // GeneradorDeTurnosWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 363);
+            this.ClientSize = new System.Drawing.Size(436, 396);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox1);
@@ -286,5 +297,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
