@@ -33,6 +33,31 @@ namespace Turnos.Dao
             connection.Close();
             return exito;
         }
+        public static List<string> CargarComboCentroDeSalud()
+        {
+            connection.Close();
+            connection.Open();
+            List<string> _listaProvincia = new List<string>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { };
+            string proceso = "ListarCentrosDeSalud";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    _listaProvincia.Add(item["idCentro"].ToString() + "," + item["Nombre"].ToString());
+                }
+            }
+            connection.Close();
+            return _listaProvincia;
+        }
+
         public static List<CentroDeSalud> BuscarCentroDeSaludPorNombre(string nombreCentro)
         {
             connection.Close();

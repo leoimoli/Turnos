@@ -38,6 +38,13 @@ namespace Turnos.Negocio
             return exito;
         }
 
+        public static List<string> CargarComboCentroDeSalud()
+        {
+            List<string> lista = new List<string>();
+            lista = CentroDeSaludDao.CargarComboCentroDeSalud();
+            return lista;
+        }
+
         private static void ValidarDatos(CentroDeSalud _centro)
         {
             throw new NotImplementedException();
