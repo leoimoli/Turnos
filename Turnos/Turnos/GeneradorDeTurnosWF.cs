@@ -60,6 +60,7 @@ namespace Turnos
                         lblDomicilioEdit.Text = centro.Domicilio;
                         CargarComboHora();
                         txtFraccionTurno.Text = Convert.ToString(centro.FraccionTurnos);
+                        lblidCentro.Text = Convert.ToString(centro.idCentro);
                     }
 
 
@@ -92,18 +93,30 @@ namespace Turnos
         {
             try
             {
+                bool Exito = false;
+                int idCentro = Convert.ToInt32(lblidCentro.Text);
+                DateTime Fecha = dateTimePicker1.Value;
                 string desde = cmbHoraDesde.Text;
                 var VarDesde = desde.Split('h')[0];
-
                 string hasta = cmbHoraHasta.Text;
                 var VarHasta = hasta.Split('h')[0];
-
                 int HoraDesde = Convert.ToInt32(VarDesde);
                 int HoraHasta = Convert.ToInt32(VarHasta);
                 int TotalHorasTrabajadas = HoraHasta - HoraDesde;
+                int FraccionDeMinutos = Convert.ToInt32(txtFraccionTurno.Text);
+                int TotalDeTurnos = CalcularTotalDeTurnos(TotalHorasTrabajadas, FraccionDeMinutos);
+                Exito = TurnosNeg.GenerarTurnos(HoraDesde, HoraHasta, TotalDeTurnos, idCentro, Fecha, FraccionDeMinutos);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { }
+        }
+
+        private int CalcularTotalDeTurnos(int totalHorasTrabajadas, int fraccionDeMinutos)
+        {
+            int totalDeTurnos = 0;
+            totalDeTurnos = totalHorasTrabajadas * 60 / fraccionDeMinutos;
+            return totalDeTurnos;
         }
     }
 }

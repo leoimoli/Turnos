@@ -58,6 +58,7 @@
     <Compile Include="Clases_Maestras\PreCargarPorCentros.cs" />
     <Compile Include="Clases_Maestras\ValoresConstantes.cs" />
     <Compile Include="Dao\CentroDeSaludDao.cs" />
+    <Compile Include="Dao\TurnosDao.cs" />
     <Compile Include="Entidades\CentroDeSalud.cs" />
     <Compile Include="GeneradorDeTurnosWF.cs">
       <SubType>Form</SubType>
@@ -72,6 +73,7 @@
       <DependentUpon>MasterWF.cs</DependentUpon>
     </Compile>
     <Compile Include="Negocio\CentroDeSaludNeg.cs" />
+    <Compile Include="Negocio\TurnosNeg.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TurnosWF.cs">

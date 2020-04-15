@@ -57,7 +57,6 @@ namespace Turnos.Dao
             connection.Close();
             return _listaProvincia;
         }
-
         public static List<CentroDeSalud> BuscarCentroDeSaludPorNombre(string nombreCentro)
         {
             connection.Close();
